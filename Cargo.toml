@@ -1,0 +1,14 @@
+[package]
+name = "wasm"
+version = "0.0.1"
+authors = [
+    "Daniel Reiter Horn <danielrh@dropbox.com>",
+]
+license = "BSD-3-Clause/MIT or Apache"
+documentation = "tbd"
+keywords = ["brotli", "decompression", "lz77", "huffman", "nostd"]
+readme = "README.md"
+
+[lib]
+crate-type=["cdylib", "rlib", "staticlib"]
+
