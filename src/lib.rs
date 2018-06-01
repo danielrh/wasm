@@ -16,18 +16,21 @@ pub unsafe extern fn wasm_alloc_u8(size: usize) -> *mut u8 {
 }
 
 #[no_mangle]
-pub unsafe extern fn wasm_checkerboard(ptr: *mut u8, size: usize, offset: i32, stride: i32) -> usize {
+pub unsafe extern fn wasm_checkerboard(ptr: *mut u8, size: usize,
+                                       offset: i32, stride: i32) -> usize {
     checkerboard(core::slice::from_raw_parts_mut(ptr, size), offset, stride)
 }
 
 pub fn checkerboard(img: &mut [u8], offset: i32, stride: i32) -> usize {
     let mut count = offset;
+    let mut ret = 0usize;
     for pix in img.iter_mut() {
         count &= -((count != stride) as i32);
         if count == 0 {
            *pix = 0xff;
+           ret += 1;
         }
         count += 1;
     }
-    (img.len() / stride as usize) + (img.len() % stride as usize != 0) as usize
+    ret
 }
