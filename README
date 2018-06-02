@@ -1,9 +1,0 @@
-rustup target add wasm32-unknown-unknown
-
-(make sure to configure your webserver... eg for apache: add mime type to /etc/apache2/mime.types
-application/wasm                    wasm      
-)
-
-cargo build --target=wasm32-unknown-unknown --release
-
-then visit index.html to see the checkerboard rust icon
